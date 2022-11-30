@@ -34,9 +34,9 @@ return static function (ECSConfig $ecsConfig): void {
      */
     $ecsConfig->sets([
         SetList::ARRAY,
-        //  SetList::DOCBLOCK,
+        SetList::DOCBLOCK,
         SetList::NAMESPACES,
-        //SetList::PHPUNIT,
+        SetList::PHPUNIT,
         SetList::PSR_12,
         SetList::SPACES,
     ]);
