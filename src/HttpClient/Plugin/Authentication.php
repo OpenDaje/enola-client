@@ -12,7 +12,6 @@ class Authentication implements Plugin
 
     public function __construct(string $token)
     {
-        // TODO validate - empty token
         $this->token = $token;
     }
 
