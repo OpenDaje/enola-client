@@ -32,18 +32,18 @@ jobs:
         with:
           ref: ${{ inputs.triggering-sha }}
 
-      - name: Get Coverage artifact name
-        id: coverage-artifact-name
-        run: |
-          echo "name=$ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE-$GITHUB_SHA" >> $GITHUB_OUTPUT
-          echo "name=$ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE-$GITHUB_SHA"
-          echo "name=${{ ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE }}-${{ GITHUB_SHA}}"
+#      - name: Get Coverage artifact name
+#        id: coverage-artifact-name
+#        run: |
+#          echo "name=$ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE-$GITHUB_SHA" >> $GITHUB_OUTPUT
+#          echo "name=$ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE-$GITHUB_SHA"
+#          echo "name=${{ ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE }}-${{ GITHUB_SHA}}"
 
       - name: Download unit test coverage artifact
         id: download-unit-test-coverage-artifact
         run: |
           ls -al
-          gh run download -n ${{ steps.coverage-artifact-name.outputs.name }}
+          gh run download -n ${{ ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE }}-${{ inputs.triggering-sha}}
           ls -al
         env:
           GH_TOKEN: ${{ github.token }}
