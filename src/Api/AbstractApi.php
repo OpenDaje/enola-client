@@ -2,6 +2,14 @@
 
 namespace Enola\Api;
 
+use Enola\EnolaClient;
+
 abstract class AbstractApi
 {
+    private EnolaClient $client;
+
+    public function __construct(EnolaClient $client)
+    {
+        $this->client = $client;
+    }
 }

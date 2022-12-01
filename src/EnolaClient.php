@@ -51,12 +51,25 @@ class EnolaClient
         return new self('', false, $builder);
     }
 
-//    /**
-//     * @throws InvalidArgumentException
-//     */
-//    public function api(string $name): AbstractApi
-//    {
-//    }
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function api(string $name): AbstractApi
+    {
+        switch ($name) {
+            /**TODO
+             * remove DummyApi
+             */
+            case 'dummy':
+                $api = new Api\DummyApi($this);
+                break;
+
+            default:
+                throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
+        }
+
+        return $api;
+    }
 
     /**
      * @param string $name
@@ -95,5 +108,11 @@ class EnolaClient
     public function removeCache(): void
     {
         $this->getHttpClientBuilder()->removeCache();
+    }
+
+    public function authenticate(string $token): void
+    {
+        $this->getHttpClientBuilder()->removePlugin(Authentication::class);
+        $this->getHttpClientBuilder()->addPlugin(new Authentication($token));
     }
 }
