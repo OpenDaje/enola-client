@@ -21,7 +21,6 @@ class EnolaClient
 {
     private Builder $httpClientBuilder;
 
-
     private bool $isSandbox;
 
     public function __construct(string $token, bool $isSandbox = false, Builder $httpClientBuilder = null)
@@ -52,12 +51,12 @@ class EnolaClient
         return new self('', false, $builder);
     }
 
-    /**
-     * @throws InvalidArgumentException
-     */
-    public function api(string $name): AbstractApi
-    {
-    }
+//    /**
+//     * @throws InvalidArgumentException
+//     */
+//    public function api(string $name): AbstractApi
+//    {
+//    }
 
     /**
      * @param string $name
