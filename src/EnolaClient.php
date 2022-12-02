@@ -29,13 +29,9 @@ class EnolaClient
     {
         $this->httpClientBuilder = $builder = $httpClientBuilder ?? new Builder();
         $this->isSandbox = $isSandbox;
-        /**
-         * TODO
-         * - Content-negotiation and accept?
-         *      'Accept' => sprintf('application/vnd.github.%s+json', $this->apiVersion),
-         */
         $builder->addPlugin(new HeaderDefaultsPlugin([
             'User-Agent' => 'php-enola-api-client (https://github.com/OpenDaje/enola-client)',
+            'Accept' => 'application/json',
         ]));
 
         if ($token) {
