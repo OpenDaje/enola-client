@@ -20,10 +20,9 @@ class Cap extends AbstractApi
      *
      * @return array|string
      */
-    public function searchCity(string $comune, string $cap, string $istat, string $codiceCatasto, string $regione, string $provincia, string $codFisco)
+    public function searchCity(array $params = [])
     {
-        // TODO param in query
-        return [];
+        return $this->get('/cerca_comuni', $params);
     }
 
     /**
@@ -57,10 +56,9 @@ class Cap extends AbstractApi
      *
      * @return array|string
      */
-    public function getSuppressedCities(string $code)
+    public function getSuppressedCities(array $params = [])
     {
-        //TODO param in query
-        return $this->get('/comuni_soppressi/', []);
+        return $this->get('/comuni_soppressi/', $params);
     }
 
     /**
