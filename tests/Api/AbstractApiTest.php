@@ -1,19 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Enola\Tests;
+namespace Enola\Tests\Api;
 
 use Enola\Api\AbstractApi;
 use Enola\EnolaClient;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\Common\HttpMethodsClientInterface;
 
-use PHPUnit\Framework\TestCase;
-
-class AbstractApiTest extends TestCase
+/**
+ * @covers \Enola\Api\AbstractApi
+ */
+class AbstractApiTest extends ApiTestCase
 {
     public function testShouldPassGETRequestToClient()
     {
-        self::markTestSkipped();
+        //self::markTestSkipped();
         $expectedArray = ['value'];
 
         $httpClient = self::getHttpMethodsMock(['get']);
@@ -85,10 +86,7 @@ class AbstractApiTest extends TestCase
             ->getMock();
     }
 
-    /**
-     * @return string
-     */
-    protected function getApiClass()
+    protected function getApiClass(): string
     {
         return AbstractApi::class;
     }
