@@ -94,7 +94,7 @@ class EnolaClientTest extends TestCase
     public function getApiClassesProvider(): array
     {
         return [
-            ['dummy', Api\DummyApi::class],
+            ['cap', Api\Cap::class],
         ];
     }
 }

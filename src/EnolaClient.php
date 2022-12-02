@@ -9,7 +9,9 @@ use Enola\HttpClient\Builder;
 use Enola\HttpClient\Plugin\Authentication;
 use Http\Client\Common\HttpMethodsClientInterface;
 
+use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
+use Http\Discovery\Psr17FactoryDiscovery;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
@@ -52,16 +54,25 @@ class EnolaClient
     }
 
     /**
+     * Sets the api host URL.
+     */
+    private function setApiEndpoint(AbstractApi $api): void
+    {
+        $apiEndpoint = $this->isSandbox ? $api::SANDBOX : $api::ENDPOINT;
+        $builder = $this->getHttpClientBuilder();
+        $builder->removePlugin(AddHostPlugin::class);
+        $builder->addPlugin(new AddHostPlugin(Psr17FactoryDiscovery::findUriFactory()->createUri($apiEndpoint)));
+    }
+
+    /**
      * @throws InvalidArgumentException
      */
     public function api(string $name): AbstractApi
     {
         switch ($name) {
-            /**TODO
-             * remove DummyApi
-             */
-            case 'dummy':
-                $api = new Api\DummyApi($this);
+            case 'cap':
+                $api = new Api\Cap($this);
+                $this->setApiEndpoint($api);
                 break;
 
             default:
