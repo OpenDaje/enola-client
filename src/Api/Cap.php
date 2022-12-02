@@ -58,7 +58,7 @@ class Cap extends AbstractApi
      */
     public function getSuppressedCities(array $params = [])
     {
-        return $this->get('/comuni_soppressi/', $params);
+        return $this->get('/comuni_soppressi', $params);
     }
 
     /**
@@ -70,7 +70,7 @@ class Cap extends AbstractApi
      */
     public function getMetropolitanCities()
     {
-        return $this->get('/citta_metropolitane/', []);
+        return $this->get('/citta_metropolitane', []);
     }
 
     /**
