@@ -1,9 +1,15 @@
 # Changelog
 
+## 0.1.2
+
+### Added
+- EnolaClient: Aggiunte Vehicles Api.
+
+
 ## 0.1.1
 
 ### Added
-- EnolaClient: Valore di default per http header 'Accept'
+- EnolaClient: Valore di default per http header 'Accept'.
 
 
 ## 0.1.0
