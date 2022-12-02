@@ -71,6 +71,11 @@ class EnolaClient
                 $this->setApiEndpoint($api);
                 break;
 
+            case 'vehicle':
+                $api = new Api\Vehicle($this);
+                $this->setApiEndpoint($api);
+                break;
+
             default:
                 throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
         }

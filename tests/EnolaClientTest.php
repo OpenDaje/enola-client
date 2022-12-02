@@ -95,6 +95,7 @@ class EnolaClientTest extends TestCase
     {
         return [
             ['cap', Api\Cap::class],
+            ['vehicle', Api\Vehicle::class],
         ];
     }
 }
