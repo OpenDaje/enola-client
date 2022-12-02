@@ -1,6 +1,12 @@
 {
     "name": "opendaje/enola-client",
+    "type": "library",
     "description": "Unofficial Openapi.it api client.",
+    "keywords": [
+        "openapi.it",
+        "api"
+    ],
+    "homepage": "https://github.com/OpenDaje/enola-client",
     "license": "MIT",
     "authors": [
         {
@@ -39,6 +45,9 @@
             "bin-links": false,
             "forward-command": true,
             "target-directory": "tools"
+        },
+        "branch-alias": {
+            "dev-main": "0.2-dev"
         }
     },
     "autoload": {
