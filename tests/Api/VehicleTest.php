@@ -9,11 +9,6 @@ use Enola\Api\Vehicle;
  */
 class VehicleTest extends ApiTestCase
 {
-    //TODO
-    public function ShouldSearchCity()
-    {
-    }
-
     public function testShouldGetCityCarInformation()
     {
         $licensePlate = '000000';
