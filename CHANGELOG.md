@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+### Added
+- EnolaClient: Valore di default per http header 'Accept'
+
+
 ## 0.1.0
 
 ### Added
