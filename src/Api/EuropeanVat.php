@@ -11,7 +11,7 @@ class EuropeanVat extends AbstractApi
 {
     public const ENDPOINT = 'https://europeanvat.altravia.com';
 
-    public const SANDBOX = 'https://test.european.altravia.com';
+    public const SANDBOX = 'https://test.europeanvat.altravia.com';
 
     /**
      * This service returns basic information of a company such as company name and address.
