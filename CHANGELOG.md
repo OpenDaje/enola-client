@@ -1,9 +1,15 @@
 # Changelog
 
+## 0.1.3
+
+### Added
+- EnolaClient: supporto European Vat Api.
+
+
 ## 0.1.2
 
 ### Added
-- EnolaClient: Aggiunte Vehicles Api.
+- EnolaClient: Supporto Vehicles Api.
 
 
 ## 0.1.1
