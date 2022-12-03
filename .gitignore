@@ -2,3 +2,6 @@
 /var/
 /vendor/
 /tools/**/vendor/
+
+docker*
+Docker*
