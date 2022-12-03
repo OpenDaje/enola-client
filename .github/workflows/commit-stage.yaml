@@ -18,6 +18,7 @@ env:
   # ARTIFACTS SETTINGS
   ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE: 'Unit-test-coverage-reports-on-SHA'
   UNIT_TEST_CLOVER_FILENAME: 'coverage-unit-test-clover.xml'
+  UNIT_TEST_JUNIT_FILENAME: 'coverage-unit-test-junit.xml'
   ARTIFATC_NAME_FOR_UNIT_TESTS_DOCUMENTATION_REPORT: 'Unit-test-docs-report-on-SHA'
   UNIT_TEST_DOC_FILENAME: 'doc-unit-test.txt'
 
@@ -99,6 +100,7 @@ jobs:
         run: |
           vendor/bin/phpunit --testsuite=unit --testdox --no-interaction --colors=always \
           --coverage-clover $UNIT_TEST_CLOVER_FILENAME \
+          --log-junit $UNIT_TEST_JUNIT_FILENAME \
           --testdox-text $UNIT_TEST_DOC_FILENAME
 
       - name: Get Coverage artifact name
@@ -111,7 +113,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.coverage-artifact-name.outputs.name }}
-          path: ${{ env.UNIT_TEST_CLOVER_FILENAME }}
+          path: |
+            ${{ env.UNIT_TEST_CLOVER_FILENAME }}
+            ${{ env.UNIT_TEST_JUNIT_FILENAME }}
 
       - name: Get Test doc artifact name
         if: ${{ matrix.generate-coverage-report }}
