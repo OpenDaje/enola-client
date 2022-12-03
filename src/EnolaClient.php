@@ -71,6 +71,11 @@ class EnolaClient
                 $this->setApiEndpoint($api);
                 break;
 
+            case 'europeanvat':
+                $api = new Api\EuropeanVat($this);
+                $this->setApiEndpoint($api);
+                break;
+
             case 'vehicle':
                 $api = new Api\Vehicle($this);
                 $this->setApiEndpoint($api);
