@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 
 /**
- * @covers \Enola\EnolaClient
+ * @covers  EnolaClient
  */
 class EnolaClientTest extends TestCase
 {
