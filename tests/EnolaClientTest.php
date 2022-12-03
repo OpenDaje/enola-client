@@ -12,13 +12,10 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 
 /**
- * @coversDefaultClass  EnolaClient
+ * @covers  EnolaClient
  */
 class EnolaClientTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
     public function testShouldNotHaveToPassHttpClientToConstructor()
     {
         $enolaClient = new EnolaClient('token');
@@ -26,9 +23,6 @@ class EnolaClientTest extends TestCase
         self::assertInstanceOf(ClientInterface::class, $enolaClient->getHttpClient());
     }
 
-    /**
-     * @covers ::createWithHttpClient
-     */
     public function testShouldPassHttpClientInterfaceToNamedConstructor()
     {
         $httpClientMock = self::getMockBuilder(ClientInterface::class)
@@ -39,9 +33,6 @@ class EnolaClientTest extends TestCase
         self::assertInstanceOf(ClientInterface::class, $enolaClient->getHttpClient());
     }
 
-    /**
-     * @covers ::authenticate
-     */
     public function testShouldAuthenticateUsingGivenToken()
     {
         $builder = self::getMockBuilder(Builder::class)
@@ -67,7 +58,6 @@ class EnolaClientTest extends TestCase
     }
 
     /**
-     * @covers ::api
      * @dataProvider getApiClassesProvider
      */
     public function testShouldGetApiInstance($apiName, $class)
@@ -78,7 +68,6 @@ class EnolaClientTest extends TestCase
     }
 
     /**
-     * @covers ::__call
      * @dataProvider getApiClassesProvider
      */
     public function testShouldGetMagicApiInstance($apiName, $class)
