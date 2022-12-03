@@ -5,7 +5,7 @@ namespace Enola\Tests\Api;
 use Enola\Api\EuropeanVat;
 
 /**
- * @covers \Enola\Api\Cap
+ * @covers \Enola\Api\EuropeanVat
  */
 class EuropeanVatTest extends ApiTestCase
 {
