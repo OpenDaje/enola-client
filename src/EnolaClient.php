@@ -76,6 +76,11 @@ class EnolaClient
                 $this->setApiEndpoint($api);
                 break;
 
+            case 'imprese':
+                $api = new Api\Imprese($this);
+                $this->setApiEndpoint($api);
+                break;
+
             case 'vehicle':
                 $api = new Api\Vehicle($this);
                 $this->setApiEndpoint($api);
