@@ -18,11 +18,12 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_base__piva_cf_or_id_
      *
+     * @param string $VatOrCfOrId VAT number, tax code or company ID
      * @return array|string
      */
-    public function getCompanyByPartitaIva(string $pivaOrVatOrId, array $params = [])
+    public function getBaseCompanyInformation(string $VatOrCfOrId)
     {
-        return $this->get('/base/' . $pivaOrVatOrId, $params);
+        return $this->get('/base/' . $VatOrCfOrId);
     }
 
     /**
@@ -30,9 +31,10 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_advance
      *
+     * @param array $params keys denominazione|provincia|codice_ateco|cciaa|rea|fatturato_min|fatturato_max|dipendenti_min|dipendenti_max|skip|limit|dry_run|lat|lng|radius
      * @return array|string
      */
-    public function getAdvancedCompanyInformation(array $params = [])
+    public function getCompaniesInformation(array $params = [])
     {
         return $this->get('/advance', $params);
     }
@@ -42,11 +44,12 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_advance__piva_cf_or_id_
      *
+     * @param string $VatOrCfOrId VAT number, tax code or company ID
      * @return array|string
      */
-    public function getFullCompanyByPartitaIva(string $pivaOrVatOrId, array $params = [])
+    public function getFullCompanyInformation(string $VatOrCfOrId)
     {
-        return $this->get('/advance/' . $pivaOrVatOrId, $params);
+        return $this->get('/advance/' . $VatOrCfOrId);
     }
 
     /**
@@ -54,11 +57,12 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_closed__piva_or_cf_
      *
+     * @param string $vatOrCf VAT number or tax code
      * @return array|string
      */
-    public function getClosedCompanyByPartitaIva(string $pivaOrVat, array $params = [])
+    public function getClosedCompany(string $vatOrCf)
     {
-        return $this->get('/closed/' . $pivaOrVat, $params);
+        return $this->get('/closed/' . $vatOrCf);
     }
 
     /**
@@ -66,11 +70,13 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_gruppoiva__piva_or_cf_
      *
+     * @param string $vatOrCf VAT number or tax code
+     * @param array $params keys cf if a tax code is given, this service will return additional information about the relationship between the VAT group and the tax code
      * @return array|string
      */
-    public function getGruppoiva(string $pivaOrVat, array $params = [])
+    public function getGruppoiva(string $vatOrCf, array $params = [])
     {
-        return $this->get('/gruppoiva/' . $pivaOrVat, $params);
+        return $this->get('/gruppoiva/' . $vatOrCf, $params);
     }
 
     /**
@@ -78,11 +84,12 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_pec__piva_or_cf_
      *
+     * @param string $vatOrCf VAT number or tax code
      * @return array|string
      */
-    public function getCompanyPec(string $pivaOrVat, array $params = [])
+    public function getCompanyPec(string $vatOrCf)
     {
-        return $this->get('/pec/' . $pivaOrVat, $params);
+        return $this->get('/pec/' . $vatOrCf);
     }
 
     /**
@@ -90,11 +97,13 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_autocomplete__query_
      *
+     * @param string $term A search query; '*' can be used as a wildcard to search for strings that start, contain or end with the given query.
+     * @param array $params keys lat|lng|radius
      * @return array|string
      */
     public function getAutocomplete(string $term, array $params = [])
     {
-        return $this->get('/autocomplete/' . $term, $params);
+        return $this->get('/autocomplete/' . rawurlencode($term), $params);
     }
 
     /**
@@ -104,9 +113,9 @@ class Imprese extends AbstractApi
      *
      * @return array|string
      */
-    public function getFormaGiuridica(array $params = [])
+    public function getFormaGiuridica()
     {
-        return $this->get('/forma_giuridica', $params);
+        return $this->get('/forma_giuridica');
     }
 
     /**
@@ -114,11 +123,12 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_forma_giuridica__codice_natura_giuridica_
      *
+     * @param string $code legal code
      * @return array|string
      */
-    public function getFormaGiuridicaByCode(string $code, array $params = [])
+    public function getFormaGiuridicaByCode(string $code)
     {
-        return $this->get('/forma_giuridica/' . $code, $params);
+        return $this->get('/forma_giuridica/' . $code);
     }
 
     /**
@@ -126,6 +136,7 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_updates
      *
+     * @param array $params keys lat|lng|radius|skip|limit|dry_run
      * @return array|string
      */
     public function getUpdates(array $params = [])
@@ -138,6 +149,8 @@ class Imprese extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/direct_marketing/imprese#/Company%20Information/get_updates__timestamp_
      *
+     * @param \DateTimeImmutable $since a timestamp
+     * @param array $params keys lat|lng|radius|skip|limit|dry_run
      * @return array|string
      */
     public function getUpdateSince(\DateTimeImmutable $since, array $params = [])

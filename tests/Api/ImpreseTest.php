@@ -9,9 +9,9 @@ use Enola\Api\Imprese;
  */
 class ImpreseTest extends ApiTestCase
 {
-    public function testShouldGetCompanyInformation()
+    public function testShouldGetBaseCompanyInformation()
     {
-        $pivaOrVatOrId = '000000000';
+        $VatOrCfOrId = '000000000';
         $expectedArray = [[
             'id' => '123',
         ]];
@@ -19,15 +19,15 @@ class ImpreseTest extends ApiTestCase
         $api = $this->getApiMock();
         $api->expects(self::once())
             ->method('get')
-            ->with("/base/$pivaOrVatOrId")
+            ->with("/base/$VatOrCfOrId")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCompanyByPartitaIva($pivaOrVatOrId));
+        self::assertEquals($expectedArray, $api->getBaseCompanyInformation($VatOrCfOrId));
     }
 
-    public function testShouldGetAdvancedCompanyInformation()
+    public function testShouldGetCompaniesInformation()
     {
-        $queryString = [
+        $queryParams = [
             'foo' => 'bar',
         ];
         $expectedArray = [[
@@ -37,15 +37,15 @@ class ImpreseTest extends ApiTestCase
         $api = $this->getApiMock();
         $api->expects(self::once())
             ->method('get')
-            ->with("/advance", $queryString)
+            ->with("/advance", $queryParams)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getAdvancedCompanyInformation($queryString));
+        self::assertEquals($expectedArray, $api->getCompaniesInformation($queryParams));
     }
 
     public function testShouldGetFullCompanyInformation()
     {
-        $pivaOrVatOrId = '000000000';
+        $VatOrCfOrId = '000000000';
         $expectedArray = [[
             'id' => '123',
         ]];
@@ -53,15 +53,15 @@ class ImpreseTest extends ApiTestCase
         $api = $this->getApiMock();
         $api->expects(self::once())
             ->method('get')
-            ->with("/advance/$pivaOrVatOrId")
+            ->with("/advance/$VatOrCfOrId")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getFullCompanyByPartitaIva($pivaOrVatOrId));
+        self::assertEquals($expectedArray, $api->getFullCompanyInformation($VatOrCfOrId));
     }
 
     public function testShouldGetClosedCompanyInformation()
     {
-        $pivaOrVat = '000000000';
+        $vatOrCf = '000000000';
         $expectedArray = [[
             'id' => '123',
         ]];
@@ -69,16 +69,16 @@ class ImpreseTest extends ApiTestCase
         $api = $this->getApiMock();
         $api->expects(self::once())
             ->method('get')
-            ->with("/closed/$pivaOrVat")
+            ->with("/closed/$vatOrCf")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getClosedCompanyByPartitaIva($pivaOrVat));
+        self::assertEquals($expectedArray, $api->getClosedCompany($vatOrCf));
     }
 
     public function testShouldGetGruppoIva()
     {
-        $pivaOrVat = '000000000';
-        $queryString = [
+        $vatOrCf = '000000000';
+        $queryParams = [
             'cf' => 'AABBCCDDEE',
         ];
         $expectedArray = [[
@@ -88,15 +88,15 @@ class ImpreseTest extends ApiTestCase
         $api = $this->getApiMock();
         $api->expects(self::once())
             ->method('get')
-            ->with("/gruppoiva/$pivaOrVat")
+            ->with("/gruppoiva/$vatOrCf")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getGruppoIva($pivaOrVat, $queryString));
+        self::assertEquals($expectedArray, $api->getGruppoIva($vatOrCf, $queryParams));
     }
 
     public function testShouldGetCompanyPec()
     {
-        $pivaOrVat = '000000000';
+        $vatOrCf = '000000000';
         $expectedArray = [[
             'id' => '123',
         ]];
@@ -104,10 +104,10 @@ class ImpreseTest extends ApiTestCase
         $api = $this->getApiMock();
         $api->expects(self::once())
             ->method('get')
-            ->with("/pec/$pivaOrVat")
+            ->with("/pec/$vatOrCf")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCompanyPec($pivaOrVat));
+        self::assertEquals($expectedArray, $api->getCompanyPec($vatOrCf));
     }
 
     public function testShouldGetAutocomplete()
@@ -159,7 +159,7 @@ class ImpreseTest extends ApiTestCase
 
     public function testShouldGetUpdates()
     {
-        $queryString = [
+        $queryParams = [
             'lat' => '13.5478',
             'lng' => '42.859',
             'radius' => '100',
@@ -171,16 +171,16 @@ class ImpreseTest extends ApiTestCase
         $api = $this->getApiMock();
         $api->expects(self::once())
             ->method('get')
-            ->with("/updates", $queryString)
+            ->with("/updates", $queryParams)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getUpdates($queryString));
+        self::assertEquals($expectedArray, $api->getUpdates($queryParams));
     }
 
     public function testShouldGetUpdatesSince()
     {
         $since = new \DateTimeImmutable('now');
-        $queryString = [
+        $queryParams = [
             'lat' => '13.5478',
             'lng' => '42.859',
             'radius' => '100',
@@ -192,10 +192,10 @@ class ImpreseTest extends ApiTestCase
         $api = $this->getApiMock();
         $api->expects(self::once())
             ->method('get')
-            ->with("/updates/" . $since->getTimestamp(), $queryString)
+            ->with("/updates/" . $since->getTimestamp(), $queryParams)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getUpdateSince($since, $queryString));
+        self::assertEquals($expectedArray, $api->getUpdateSince($since, $queryParams));
     }
 
     protected function getApiClass(): string
