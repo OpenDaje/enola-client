@@ -4,7 +4,7 @@
 
 ### Changed
 - EuropeanVat::getCompanyInformation().
-
+- Vehicle::class.
 
 ## 0.1.4
 
