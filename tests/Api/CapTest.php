@@ -9,12 +9,26 @@ use Enola\Api\Cap;
  */
 class CapTest extends ApiTestCase
 {
-    //TODO
-    public function ShouldSearchCity()
+    public function testShouldSearchCity(): void
     {
+        $queryParams = [
+            'cap' => '00100',
+            'regione' => 'lazio',
+        ];
+        $expectedArray = [[
+            'id' => '123',
+        ]];
+
+        $api = $this->getApiMock();
+        $api->expects(self::once())
+            ->method('get')
+            ->with('/cerca_comuni', $queryParams)
+            ->will(self::returnValue($expectedArray));
+
+        self::assertEquals($expectedArray, $api->searchCity($queryParams));
     }
 
-    public function testShouldGetCityInformation()
+    public function testShouldGetBaseCityInformation(): void
     {
         $istatCode = '000000';
         $expectedArray = [[
@@ -27,10 +41,10 @@ class CapTest extends ApiTestCase
             ->with("/comuni_base/$istatCode")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCityInformation($istatCode));
+        self::assertEquals($expectedArray, $api->getBaseCityInformation($istatCode));
     }
 
-    public function testShouldGetCityAdvancedInformation()
+    public function testShouldGetFullCityInformation(): void
     {
         $istatCode = '000000';
         $expectedArray = [[
@@ -44,10 +58,10 @@ class CapTest extends ApiTestCase
             ->with("/comuni_advance/$istatCode")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCityAdvancedInformation($istatCode));
+        self::assertEquals($expectedArray, $api->getFullCityInformation($istatCode));
     }
 
-    public function testShouldGetSuppressedCities()
+    public function testShouldGetSuppressedCities(): void
     {
         $expectedArray = [[
             'id' => '123',
@@ -66,7 +80,7 @@ class CapTest extends ApiTestCase
         self::assertEquals($expectedArray, $api->getSuppressedCities($queryParams));
     }
 
-    public function testShouldGetMetropolitanCities()
+    public function testShouldGetMetropolitanCities(): void
     {
         $expectedArray = [[
             'id' => '123',
@@ -80,6 +94,71 @@ class CapTest extends ApiTestCase
             ->will(self::returnValue($expectedArray));
 
         self::assertEquals($expectedArray, $api->getMetropolitanCities());
+    }
+
+    public function testShouldGetCitiesByCap(): void
+    {
+        $cap = '00100';
+        $expectedArray = [[
+            'id' => '123',
+            'foo' => 'bar',
+        ]];
+
+        $api = $this->getApiMock();
+        $api->expects(self::once())
+            ->method('get')
+            ->with('/cap/' . $cap)
+            ->will(self::returnValue($expectedArray));
+
+        self::assertEquals($expectedArray, $api->getCitiesByCap($cap));
+    }
+
+    public function testShouldGetRegioni(): void
+    {
+        $expectedArray = [[
+            'id' => '123',
+            'foo' => 'bar',
+        ]];
+
+        $api = $this->getApiMock();
+        $api->expects(self::once())
+            ->method('get')
+            ->with('/regioni')
+            ->will(self::returnValue($expectedArray));
+
+        self::assertEquals($expectedArray, $api->getRegioni());
+    }
+
+    public function testShouldGetProvince(): void
+    {
+        $expectedArray = [[
+            'id' => '123',
+            'foo' => 'bar',
+        ]];
+
+        $api = $this->getApiMock();
+        $api->expects(self::once())
+            ->method('get')
+            ->with('/province')
+            ->will(self::returnValue($expectedArray));
+
+        self::assertEquals($expectedArray, $api->getProvince());
+    }
+
+    public function testShouldGetProvinceByCode(): void
+    {
+        $code = '000000';
+        $expectedArray = [[
+            'id' => '123',
+        ]];
+
+        $api = $this->getApiMock();
+        $api->expects(self::once())
+            ->method('get')
+            ->with("/province/$code")
+            ->will(self::returnValue($expectedArray));
+
+        self::assertEquals($expectedArray, $api->getProvinceByCode($code));
     }
 
     protected function getApiClass(): string
