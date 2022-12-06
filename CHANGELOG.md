@@ -1,10 +1,11 @@
 # Changelog
 
-## 0.1.5 [NOT RELEASED]
+## 0.1.5
 
 ### Changed
 - EuropeanVat::getCompanyInformation().
 - Vehicle::class.
+- Cap::class.
 
 ## 0.1.4
 
