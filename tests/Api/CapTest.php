@@ -9,12 +9,26 @@ use Enola\Api\Cap;
  */
 class CapTest extends ApiTestCase
 {
-    //TODO
-    public function ShouldSearchCity()
+    public function testShouldSearchCity()
     {
+        $queryParams = [
+            'cap' => '00100',
+            'regione' => 'lazio',
+        ];
+        $expectedArray = [[
+            'id' => '123',
+        ]];
+
+        $api = $this->getApiMock();
+        $api->expects(self::once())
+            ->method('get')
+            ->with('/cerca_comuni', $queryParams)
+            ->will(self::returnValue($expectedArray));
+
+        self::assertEquals($expectedArray, $api->searchCity($queryParams));
     }
 
-    public function testShouldGetCityInformation()
+    public function testShouldGetBaseCityInformation()
     {
         $istatCode = '000000';
         $expectedArray = [[
@@ -27,10 +41,10 @@ class CapTest extends ApiTestCase
             ->with("/comuni_base/$istatCode")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCityInformation($istatCode));
+        self::assertEquals($expectedArray, $api->getBaseCityInformation($istatCode));
     }
 
-    public function testShouldGetCityAdvancedInformation()
+    public function testShouldGetFullCityInformation()
     {
         $istatCode = '000000';
         $expectedArray = [[
@@ -44,7 +58,7 @@ class CapTest extends ApiTestCase
             ->with("/comuni_advance/$istatCode")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCityAdvancedInformation($istatCode));
+        self::assertEquals($expectedArray, $api->getFullCityInformation($istatCode));
     }
 
     public function testShouldGetSuppressedCities()
