@@ -18,6 +18,8 @@ class EuropeanVat extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/ecommerce/europeanvat#/Company%20Information/get_companies__country_code___vat_
      *
+     * @param string $countryCode company country code
+     * @param string $vatNumber VAT number of the company
      * @return array|string
      */
     public function getCompanyInformation(string $countryCode, string $vatNumber, array $params = [])
