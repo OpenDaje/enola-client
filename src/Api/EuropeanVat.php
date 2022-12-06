@@ -22,8 +22,8 @@ class EuropeanVat extends AbstractApi
      * @param string $vatNumber VAT number of the company
      * @return array|string
      */
-    public function getCompanyInformation(string $countryCode, string $vatNumber, array $params = [])
+    public function getCompanyInformation(string $countryCode, string $vatNumber)
     {
-        return $this->get('/companies/' . rawurlencode($countryCode) . '/' . rawurlencode($vatNumber), $params);
+        return $this->get('/companies/' . rawurlencode($countryCode) . '/' . rawurlencode($vatNumber));
     }
 }
