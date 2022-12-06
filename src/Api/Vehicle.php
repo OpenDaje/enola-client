@@ -18,11 +18,12 @@ class Vehicle extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/car/targa#/Vehicles/get_auto__targa_
      *
+     * @param string $licensePlate License plate
      * @return array|string
      */
-    public function getCarInformation(string $licensePlate, array $params = [])
+    public function getCarInformation(string $licensePlate)
     {
-        return $this->get('/auto/' . $licensePlate, $params);
+        return $this->get('/auto/' . $licensePlate);
     }
 
     /**
@@ -30,11 +31,12 @@ class Vehicle extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/car/targa#/Vehicles/get_moto__targa_
      *
+     * @param string $licensePlate License plate
      * @return array|string
      */
-    public function getMotorcycleInformation(string $licensePlate, array $params = [])
+    public function getMotorcycleInformation(string $licensePlate)
     {
-        return $this->get('/moto/' . $licensePlate, $params);
+        return $this->get('/moto/' . $licensePlate);
     }
 
     /**
@@ -42,10 +44,11 @@ class Vehicle extends AbstractApi
      *
      * @link https://developers.openapi.it/categories/car/targa#/Vehicles/get_assicurazione__targa_
      *
+     * @param string $licensePlate License plate
      * @return array|string
      */
-    public function getInsuranceInformation(string $licensePlate, array $params = [])
+    public function getInsuranceInformation(string $licensePlate)
     {
-        return $this->get('/assicurazione/' . $licensePlate, $params);
+        return $this->get('/assicurazione/' . $licensePlate);
     }
 }
