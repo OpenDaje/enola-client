@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.5 [NOT RELEASED]
+
+### Changed
+- EuropeanVat::getCompanyInformation().
+
+
 ## 0.1.4
 
 ### Added
