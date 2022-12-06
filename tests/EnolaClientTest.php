@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 
 /**
- * @covers  EnolaClient
+ * @covers  \Enola\EnolaClient
  */
 class EnolaClientTest extends TestCase
 {
@@ -95,8 +95,9 @@ class EnolaClientTest extends TestCase
     {
         return [
             ['cap', Api\Cap::class],
-            ['vehicle', Api\Vehicle::class],
             ['europeanvat', Api\EuropeanVat::class],
+            ['imprese', Api\Imprese::class],
+            ['vehicle', Api\Vehicle::class],
         ];
     }
 }
