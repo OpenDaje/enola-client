@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4 UNRELEASED
+
+### Added
+- EnolaClient: supporto Impresa Api.
+
+
 ## 0.1.3
 
 ### Added
