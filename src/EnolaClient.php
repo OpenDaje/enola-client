@@ -5,10 +5,9 @@ namespace Enola;
 use BadMethodCallException;
 use Enola\Api\AbstractApi;
 use Enola\HttpClient\Builder;
-
 use Enola\HttpClient\Plugin\Authentication;
+use Enola\HttpClient\Plugin\OpenApiExceptionThrower;
 use Http\Client\Common\HttpMethodsClientInterface;
-
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Discovery\Psr17FactoryDiscovery;
@@ -29,6 +28,7 @@ class EnolaClient
     {
         $this->httpClientBuilder = $builder = $httpClientBuilder ?? new Builder();
         $this->isSandbox = $isSandbox;
+        $builder->addPlugin(new OpenApiExceptionThrower());
         $builder->addPlugin(new HeaderDefaultsPlugin([
             'User-Agent' => 'php-enola-api-client (https://github.com/OpenDaje/enola-client)',
             'Accept' => 'application/json',
