@@ -15,7 +15,7 @@ class OpenApiExceptionThrower implements Plugin
     public function handleRequest(RequestInterface $request, callable $next, callable $first): Promise
     {
         return $next($request)->then(function (ResponseInterface $response) use ($request) {
-            if ($response->getStatusCode() < 400 || $response->getStatusCode() > 600) {
+            if ($response->getStatusCode() < 400) {
                 return $response;
             }
 
