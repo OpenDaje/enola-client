@@ -1,11 +1,18 @@
 # Changelog
 
+## 0.1.6 [NOT RELEASED]
+
+### Added
+- Gestione Http exceptions ed errori.
+
+
 ## 0.1.5
 
 ### Changed
 - EuropeanVat::getCompanyInformation().
 - Vehicle::class.
 - Cap::class.
+
 
 ## 0.1.4
 
