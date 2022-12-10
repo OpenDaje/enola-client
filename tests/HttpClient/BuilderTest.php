@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  */
 class BuilderTest extends TestCase
 {
-    public function testShouldClearHeaders()
+    public function testShouldClearHeaders(): void
     {
         $builder = self::getMockBuilder(Builder::class)
             ->onlyMethods(['addPlugin', 'removePlugin'])
@@ -27,7 +27,7 @@ class BuilderTest extends TestCase
         $builder->clearHeaders();
     }
 
-    public function testShouldAddHeaders()
+    public function testShouldAddHeaders(): void
     {
         $headers = ['header1', 'header2'];
 
@@ -46,7 +46,7 @@ class BuilderTest extends TestCase
         $client->addHeaders($headers);
     }
 
-    public function testAppendingHeaderShouldAddAndRemovePlugin()
+    public function testAppendingHeaderShouldAddAndRemovePlugin(): void
     {
         $expectedHeaders = [
             'Accept' => 'application/json',

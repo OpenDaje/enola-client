@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ResponseMediatorTest extends TestCase
 {
-    public function testGetContent()
+    public function testGetContent(): void
     {
         $expectedBody = [
             'foo' => 'bar',
@@ -24,13 +24,13 @@ class ResponseMediatorTest extends TestCase
             \GuzzleHttp\Psr7\stream_for(json_encode($expectedBody))
         );
 
-        self::assertEquals($expectedBody, ResponseMediator::getContent($response));
+        self::assertSame($expectedBody, ResponseMediator::getContent($response));
     }
 
     /**
      * If content-type is not json we should get the raw body.
      */
-    public function testGetContentNotJson()
+    public function testGetContentNotJson(): void
     {
         $expectedBody = 'foobar';
         $response = new Response(
@@ -39,13 +39,13 @@ class ResponseMediatorTest extends TestCase
             \GuzzleHttp\Psr7\stream_for($expectedBody)
         );
 
-        self::assertEquals($expectedBody, ResponseMediator::getContent($response));
+        self::assertSame($expectedBody, ResponseMediator::getContent($response));
     }
 
     /**
      * Make sure we return the body if we have invalid json.
      */
-    public function testGetContentInvalidJson()
+    public function testGetContentInvalidJson(): void
     {
         $expectedBody = 'foobar';
         $response = new Response(
@@ -56,6 +56,6 @@ class ResponseMediatorTest extends TestCase
             \GuzzleHttp\Psr7\stream_for($expectedBody)
         );
 
-        self::assertEquals($expectedBody, ResponseMediator::getContent($response));
+        self::assertSame($expectedBody, ResponseMediator::getContent($response));
     }
 }

@@ -22,7 +22,7 @@ class VehicleTest extends ApiTestCase
             ->with("/auto/$licensePlate")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCarInformation($licensePlate));
+        self::assertSame($expectedArray, $api->getCarInformation($licensePlate));
     }
 
     public function testShouldGetMotorcycleInformation()
@@ -39,7 +39,7 @@ class VehicleTest extends ApiTestCase
             ->with("/moto/$licensePlate")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getMotorcycleInformation($licensePlate));
+        self::assertSame($expectedArray, $api->getMotorcycleInformation($licensePlate));
     }
 
     public function testShouldGetInsuranceInformation()
@@ -56,7 +56,7 @@ class VehicleTest extends ApiTestCase
             ->with("/assicurazione/" . $licensePlate)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getInsuranceInformation($licensePlate));
+        self::assertSame($expectedArray, $api->getInsuranceInformation($licensePlate));
     }
 
     protected function getApiClass(): string
