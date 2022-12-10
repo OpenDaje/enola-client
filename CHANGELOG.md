@@ -1,9 +1,10 @@
 # Changelog
 
-## 0.1.6 [NOT RELEASED]
+## 0.1.6
 
 ### Added
 - Gestione Http exceptions ed errori.
+- Supporto php 8.2
 
 
 ## 0.1.5
