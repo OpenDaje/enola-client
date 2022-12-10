@@ -9,7 +9,7 @@ use Enola\Api\EuropeanVat;
  */
 class EuropeanVatTest extends ApiTestCase
 {
-    public function testShouldGetCityAdvancedInformation()
+    public function testShouldGetCityAdvancedInformation(): void
     {
         $countryCode = 'IT';
         $vatNumber = 'IT';
@@ -24,7 +24,7 @@ class EuropeanVatTest extends ApiTestCase
             ->with("/companies/$countryCode/$vatNumber")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCompanyInformation($countryCode, $vatNumber));
+        self::assertSame($expectedArray, $api->getCompanyInformation($countryCode, $vatNumber));
     }
 
     protected function getApiClass(): string

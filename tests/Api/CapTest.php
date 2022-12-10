@@ -25,7 +25,7 @@ class CapTest extends ApiTestCase
             ->with('/cerca_comuni', $queryParams)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->searchCity($queryParams));
+        self::assertSame($expectedArray, $api->searchCity($queryParams));
     }
 
     public function testShouldGetBaseCityInformation(): void
@@ -41,7 +41,7 @@ class CapTest extends ApiTestCase
             ->with("/comuni_base/$istatCode")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getBaseCityInformation($istatCode));
+        self::assertSame($expectedArray, $api->getBaseCityInformation($istatCode));
     }
 
     public function testShouldGetFullCityInformation(): void
@@ -58,7 +58,7 @@ class CapTest extends ApiTestCase
             ->with("/comuni_advance/$istatCode")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getFullCityInformation($istatCode));
+        self::assertSame($expectedArray, $api->getFullCityInformation($istatCode));
     }
 
     public function testShouldGetSuppressedCities(): void
@@ -77,7 +77,7 @@ class CapTest extends ApiTestCase
             ->with("/comuni_soppressi", $queryParams)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getSuppressedCities($queryParams));
+        self::assertSame($expectedArray, $api->getSuppressedCities($queryParams));
     }
 
     public function testShouldGetMetropolitanCities(): void
@@ -93,7 +93,7 @@ class CapTest extends ApiTestCase
             ->with("/citta_metropolitane")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getMetropolitanCities());
+        self::assertSame($expectedArray, $api->getMetropolitanCities());
     }
 
     public function testShouldGetCitiesByCap(): void
@@ -110,7 +110,7 @@ class CapTest extends ApiTestCase
             ->with('/cap/' . $cap)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCitiesByCap($cap));
+        self::assertSame($expectedArray, $api->getCitiesByCap($cap));
     }
 
     public function testShouldGetRegioni(): void
@@ -126,7 +126,7 @@ class CapTest extends ApiTestCase
             ->with('/regioni')
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getRegioni());
+        self::assertSame($expectedArray, $api->getRegioni());
     }
 
     public function testShouldGetProvince(): void
@@ -142,7 +142,7 @@ class CapTest extends ApiTestCase
             ->with('/province')
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getProvince());
+        self::assertSame($expectedArray, $api->getProvince());
     }
 
     public function testShouldGetProvinceByCode(): void
@@ -158,7 +158,7 @@ class CapTest extends ApiTestCase
             ->with("/province/$code")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getProvinceByCode($code));
+        self::assertSame($expectedArray, $api->getProvinceByCode($code));
     }
 
     protected function getApiClass(): string

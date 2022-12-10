@@ -12,9 +12,8 @@ use Http\Client\Common\HttpMethodsClientInterface;
  */
 class AbstractApiTest extends ApiTestCase
 {
-    public function testShouldPassGETRequestToClient()
+    public function testShouldPassGETRequestToClient(): void
     {
-        //self::markTestSkipped();
         $expectedArray = ['value'];
 
         $httpClient = self::getHttpMethodsMock(['get']);
@@ -44,7 +43,7 @@ class AbstractApiTest extends ApiTestCase
                     'header1' => 'header1value',
                 ], ]);
 
-        self::assertEquals($expectedArray, $actual);
+        self::assertSame($expectedArray, $actual);
     }
 
     /**

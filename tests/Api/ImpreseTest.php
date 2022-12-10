@@ -9,7 +9,7 @@ use Enola\Api\Imprese;
  */
 class ImpreseTest extends ApiTestCase
 {
-    public function testShouldGetBaseCompanyInformation()
+    public function testShouldGetBaseCompanyInformation(): void
     {
         $VatOrCfOrId = '000000000';
         $expectedArray = [[
@@ -22,10 +22,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/base/$VatOrCfOrId")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getBaseCompanyInformation($VatOrCfOrId));
+        self::assertSame($expectedArray, $api->getBaseCompanyInformation($VatOrCfOrId));
     }
 
-    public function testShouldGetCompaniesInformation()
+    public function testShouldGetCompaniesInformation(): void
     {
         $queryParams = [
             'foo' => 'bar',
@@ -40,10 +40,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/advance", $queryParams)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCompaniesInformation($queryParams));
+        self::assertSame($expectedArray, $api->getCompaniesInformation($queryParams));
     }
 
-    public function testShouldGetFullCompanyInformation()
+    public function testShouldGetFullCompanyInformation(): void
     {
         $VatOrCfOrId = '000000000';
         $expectedArray = [[
@@ -56,10 +56,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/advance/$VatOrCfOrId")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getFullCompanyInformation($VatOrCfOrId));
+        self::assertSame($expectedArray, $api->getFullCompanyInformation($VatOrCfOrId));
     }
 
-    public function testShouldGetClosedCompanyInformation()
+    public function testShouldGetClosedCompanyInformation(): void
     {
         $vatOrCf = '000000000';
         $expectedArray = [[
@@ -72,10 +72,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/closed/$vatOrCf")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getClosedCompany($vatOrCf));
+        self::assertSame($expectedArray, $api->getClosedCompany($vatOrCf));
     }
 
-    public function testShouldGetGruppoIva()
+    public function testShouldGetGruppoIva(): void
     {
         $vatOrCf = '000000000';
         $queryParams = [
@@ -91,10 +91,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/gruppoiva/$vatOrCf")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getGruppoIva($vatOrCf, $queryParams));
+        self::assertSame($expectedArray, $api->getGruppoIva($vatOrCf, $queryParams));
     }
 
-    public function testShouldGetCompanyPec()
+    public function testShouldGetCompanyPec(): void
     {
         $vatOrCf = '000000000';
         $expectedArray = [[
@@ -107,10 +107,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/pec/$vatOrCf")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getCompanyPec($vatOrCf));
+        self::assertSame($expectedArray, $api->getCompanyPec($vatOrCf));
     }
 
-    public function testShouldGetAutocomplete()
+    public function testShouldGetAutocomplete(): void
     {
         $term = 'mil';
         $expectedArray = [[
@@ -123,10 +123,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/autocomplete/$term")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getAutocomplete($term));
+        self::assertSame($expectedArray, $api->getAutocomplete($term));
     }
 
-    public function testShouldGetFormaGiuridica()
+    public function testShouldGetFormaGiuridica(): void
     {
         $expectedArray = [[
             'id' => '123',
@@ -138,10 +138,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/forma_giuridica")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getFormaGiuridica());
+        self::assertSame($expectedArray, $api->getFormaGiuridica());
     }
 
-    public function testShouldGetFormaGiuridicaByCode()
+    public function testShouldGetFormaGiuridicaByCode(): void
     {
         $formaGiuridicaCode = 'sp';
         $expectedArray = [[
@@ -154,10 +154,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/forma_giuridica/$formaGiuridicaCode")
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getFormaGiuridicaByCode($formaGiuridicaCode));
+        self::assertSame($expectedArray, $api->getFormaGiuridicaByCode($formaGiuridicaCode));
     }
 
-    public function testShouldGetUpdates()
+    public function testShouldGetUpdates(): void
     {
         $queryParams = [
             'lat' => '13.5478',
@@ -174,10 +174,10 @@ class ImpreseTest extends ApiTestCase
             ->with("/updates", $queryParams)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getUpdates($queryParams));
+        self::assertSame($expectedArray, $api->getUpdates($queryParams));
     }
 
-    public function testShouldGetUpdatesSince()
+    public function testShouldGetUpdatesSince(): void
     {
         $since = new \DateTimeImmutable('now');
         $queryParams = [
@@ -195,7 +195,7 @@ class ImpreseTest extends ApiTestCase
             ->with("/updates/" . $since->getTimestamp(), $queryParams)
             ->will(self::returnValue($expectedArray));
 
-        self::assertEquals($expectedArray, $api->getUpdateSince($since, $queryParams));
+        self::assertSame($expectedArray, $api->getUpdateSince($since, $queryParams));
     }
 
     protected function getApiClass(): string

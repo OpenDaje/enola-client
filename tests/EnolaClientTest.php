@@ -16,14 +16,14 @@ use Psr\Http\Client\ClientInterface;
  */
 class EnolaClientTest extends TestCase
 {
-    public function testShouldNotHaveToPassHttpClientToConstructor()
+    public function testShouldNotHaveToPassHttpClientToConstructor(): void
     {
         $enolaClient = new EnolaClient('token');
 
         self::assertInstanceOf(ClientInterface::class, $enolaClient->getHttpClient());
     }
 
-    public function testShouldPassHttpClientInterfaceToNamedConstructor()
+    public function testShouldPassHttpClientInterfaceToNamedConstructor(): void
     {
         $httpClientMock = self::getMockBuilder(ClientInterface::class)
             ->getMock();
@@ -33,7 +33,7 @@ class EnolaClientTest extends TestCase
         self::assertInstanceOf(ClientInterface::class, $enolaClient->getHttpClient());
     }
 
-    public function testShouldAuthenticateUsingGivenToken()
+    public function testShouldAuthenticateUsingGivenToken(): void
     {
         $builder = self::getMockBuilder(Builder::class)
             ->onlyMethods(['addPlugin', 'removePlugin'])
@@ -60,7 +60,7 @@ class EnolaClientTest extends TestCase
     /**
      * @dataProvider getApiClassesProvider
      */
-    public function testShouldGetApiInstance($apiName, $class)
+    public function testShouldGetApiInstance($apiName, $class): void
     {
         $client = new EnolaClient('token');
 
@@ -70,21 +70,21 @@ class EnolaClientTest extends TestCase
     /**
      * @dataProvider getApiClassesProvider
      */
-    public function testShouldGetMagicApiInstance($apiName, $class)
+    public function testShouldGetMagicApiInstance($apiName, $class): void
     {
         $client = new EnolaClient('token');
 
         self::assertInstanceOf($class, $client->$apiName());
     }
 
-    public function testShouldNotGetApiInstance()
+    public function testShouldNotGetApiInstance(): void
     {
         self::expectException(InvalidArgumentException::class);
         $client = new EnolaClient('token');
         $client->api('do_not_exist');
     }
 
-    public function testShouldNotGetMagicApiInstance()
+    public function testShouldNotGetMagicApiInstance(): void
     {
         self::expectException(BadMethodCallException::class);
         $client = new EnolaClient('token');
