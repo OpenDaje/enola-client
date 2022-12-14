@@ -28,7 +28,7 @@ composer require opendaje/enola-client
 
 // installa un Http client compatibile con lo standard PSR
 
-composer require php-http/guzzle6-adapter
+composer require http-interop/http-factory-guzzle php-http/guzzle6-adapter
 ```
 
 ## Uso
