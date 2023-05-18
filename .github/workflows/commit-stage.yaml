@@ -97,6 +97,12 @@ jobs:
           composer install --prefer-dist --no-progress --ansi
 
       - name: Run unit tests
+        if: ${{ !matrix.generate-coverage-report }}
+        run: |
+          vendor/bin/phpunit --testsuite=unit --testdox --no-interaction --colors=always
+
+      - name: Run unit tests with coverage
+        if: ${{ matrix.generate-coverage-report }}
         run: |
           vendor/bin/phpunit --testsuite=unit --testdox --no-interaction --colors=always \
           --coverage-clover $UNIT_TEST_CLOVER_FILENAME \
