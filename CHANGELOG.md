@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.7] -  2023-05-18
+###### (Maintenance release)
+- update dipendenze.
+
 ## 0.1.6
 
 ### Added
