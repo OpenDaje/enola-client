@@ -139,7 +139,7 @@ class Builder
         if (! isset($config['cache_key_generator'])) {
             $config['cache_key_generator'] = new HeaderCacheKeyGenerator(['Authorization', 'Cookie', 'Accept', 'Content-type']);
         }
-        $this->cachePlugin = Plugin\CachePlugin::clientCache($cachePool, $this->streamFactory, $config);
+        $this->cachePlugin = CachePlugin::clientCache($cachePool, $this->streamFactory, $config);
         $this->httpClientModified = true;
     }
 
