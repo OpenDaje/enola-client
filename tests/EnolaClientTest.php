@@ -91,7 +91,7 @@ class EnolaClientTest extends TestCase
         $client->doNotExist();
     }
 
-    public function getApiClassesProvider(): array
+    public static function getApiClassesProvider(): array
     {
         return [
             ['cap', Api\Cap::class],
