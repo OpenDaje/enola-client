@@ -15,9 +15,6 @@ use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Client\ClientInterface;
 
-/**
- * EnolaClient
- */
 class EnolaClient
 {
     private Builder $httpClientBuilder;
@@ -87,7 +84,7 @@ class EnolaClient
                 break;
 
             default:
-                throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
+                throw new InvalidArgumentException(\sprintf('Undefined api instance called: "%s"', $name));
         }
 
         return $api;
@@ -102,7 +99,7 @@ class EnolaClient
         try {
             return $this->api($name);
         } catch (InvalidArgumentException $e) {
-            throw new BadMethodCallException(sprintf('Undefined method called: "%s"', $name));
+            throw new BadMethodCallException(\sprintf('Undefined method called: "%s"', $name));
         }
     }
 
