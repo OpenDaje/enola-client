@@ -21,6 +21,6 @@ class Authentication implements Plugin
             return $next($request);
         }
 
-        return $next($request->withHeader('Authorization', sprintf('Bearer %s', $this->token)));
+        return $next($request->withHeader('Authorization', \sprintf('Bearer %s', $this->token)));
     }
 }
